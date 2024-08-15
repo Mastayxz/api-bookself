@@ -16,14 +16,13 @@ class BookController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index(Request $request)
+    public function index()
     {
         // Ambil data buku dengan pagination, misalnya 10 buku per halaman
         $books = Book::paginate(10);
 
         // Kembalikan respons sukses dengan data buku
         return response()->json([
-            'message' => 'Books retrieved successfully',
             'books' => $books
         ], 200);
     }
@@ -161,7 +160,7 @@ class BookController extends Controller
         ], 200);
     }
 
-    public function destroy(Request $request, $book_id)
+    public function destroy($book_id)
     {
         // Temukan buku berdasarkan ID
         $book = Book::find($book_id);
